@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Mini app para mostrar datos del mundo de Batman">
+  <meta name="keywords" content="batman, api, batman api, app, batman app">
+  <meta name="author" content="Samuel Meza">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <title>Batman API</title>
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+
+    <!-- Header -->
+  <header class="">
+        <h1 id="main-title" class="">
+            Cargando...
+        </h1>
+        <p class="">Datos obtenidos de la Batman API</p>
+    </header>
+
+    <!-- Navegación de secciones -->
+    <nav class="">
+        <a href="#characters" id="nav-characters" class="">Personajes</a>
+        <a href="#locations" id="nav-locations" class="">Ubicaciones</a>
+        <a href="#concepts" id="nav-concepts" class="">Conceptos</a>
+        <a href="#storylines" id="nav-storylines" class="">Líneas Argumentales</a>
+    </nav>
+
+    <!-- Carrusel de destacados -->
+    <section id="carousel-section" class="">
+        <h2 class="">Destacados (Carrusel Flexbox)</h2>
+        <div id="carousel-container" class="">
+            <!-- Las imágenes del carrusel se inyectarán aquí -->
+        </div>
+        <hr class="">
+    </section>
+
+    <!-- Loader de carga de datos -->
+    <div id="loader" class="">
+        Cargando datos...
+        <div class=""></div>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div id="error-message" class="hidden">
+        No se pudieron cargar los datos. Por favor, inténtalo de nuevo más tarde.
+    </div>
+
+    <!-- Contenedor principal de la cuadrícula de tarjetas (Grid) -->
+    <main id="content-container" class="">
+        <!-- Las tarjetas se inyectarán aquí por JavaScript -->
+    </main>
+
+    <!-- Script de la aplicación -->
+    <script src="src/js/App.js"></script>
+</body>
+</html>
