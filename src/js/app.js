@@ -8,68 +8,7 @@ const app = document.getElementById('app');
 let currentSection = 'characters';
 let isLoading = true;
 
-// Elementos secundarios
-// const mainTitle = document.getElementById("main-title")
-// const navCharacters = document.getElementById("nav-characters")
-// const navLocations = document.getElementById("nav-locations")
-// const navConcepts = document.getElementById("nav-concepts")
-// const navStorylines = document.getElementById("nav-storylines")
-// const carouselSection = document.getElementById("carousel-section")
-// const carouselContainer = document.getElementById("carousel-container")
-// const loader = document.getElementById("loader")
-// const errorMessage = document.getElementById("error-message")
-// const contentContainer = document.getElementById("content-container")
-
 /****************************************************************************/
-
-const createCharacterCard = (character) => {
-  const { id, attributes } = character;
-  const { 
-    name, 
-    alias, 
-    alive, 
-    role, 
-    description, 
-    creator, 
-    first_appearance, 
-    gender, 
-    abilities, 
-    image_url 
-  } = attributes;
-
-  const card = document.createElement('div');
-  card.className = 'character-card';
-  card.dataset.id = id;
-
-  card.innerHTML = `
-    <div class="character-image">
-      <img src="${image_url || 'https://via.placeholder.com/200x300?text=No+Image'}" alt="${name}">
-    </div>
-    <div class="character-info">
-      <h3>${name} ${alias ? `(${alias})` : ''}</h3>
-      <p class="character-meta">
-        <span class="status ${alive ? 'alive' : 'deceased'}">${alive ? 'Vivo' : 'Fallecido'}</span> • 
-        <span>${role}</span> • 
-        <span>${gender}</span>
-      </p>
-      <p class="character-description">${description}</p>
-      <div class="character-details">
-        <p><strong>Primera aparición:</strong> ${first_appearance}</p>
-        <p><strong>Creador(es):</strong> ${creator}</p>
-        ${abilities && abilities.length > 0 ? `
-          <div class="character-abilities">
-            <strong>Habilidades:</strong>
-            <ul>
-              ${abilities.map(ability => `<li>${ability}</li>`).join('')}
-            </ul>
-          </div>
-        ` : ''}
-      </div>
-    </div>
-  `;
-
-  return card;
-};
 
 const getDataCharacters = async () => {
   try {
@@ -114,5 +53,143 @@ const createError = (message) => {
   `;
   return error;
 };
+
+const createHeader = () => {
+  const header = document.createElement('header');
+  header.className = 'app__header';
+  header.innerHTML = `
+    <h1 class="app__title">Batman API</h1>
+    <p class="app__subtitle">Explora el universo de Batman</p>
+  `;
+  return header;
+};
+
+const createNavigation = () => {
+  const nav = document.createElement('nav');
+  nav.className = 'app__nav';
+  nav.innerHTML = `
+    <ul class="app__nav-list">
+      <li class="app__nav-item">
+        <button class="app__nav-link ${currentSection === 'characters' ? 'active' : ''}" data-section="characters">
+          Personajes
+        </button>
+      </li>
+      <li class="app__nav-item">
+        <button class="app__nav-link" data-section="locations">Ubicaciones</button>
+      </li>
+      <li class="app__nav-item">
+        <button class="app__nav-link" data-section="concepts">Conceptos</button>
+      </li>
+      <li class="app__nav-item">
+        <button class="app__nav-link" data-section="storylines">Historias</button>
+      </li>
+    </ul>
+  `;
+  return nav;
+};
+
+const createMainContent = () => {
+  const main = document.createElement('main');
+  main.className = 'app__main';
+  return main;
+};
+
+const createCharacterCard = (character) => {
+  const { id, attributes } = character;
+  const card = document.createElement('article');
+  card.className = 'character-card';
+  card.dataset.id = id;
+
+  card.innerHTML = `
+    <div class="character-card__image">
+      <img src="${attributes.image_url || 'https://via.placeholder.com/300x450?text=No+Image'}" 
+           alt="${attributes.name}" 
+           class="character-card__img">
+    </div>
+    <div class="character-card__content">
+      <h3 class="character-card__title">
+        ${attributes.name} 
+        ${attributes.alias ? `<span class="character-card__alias">(${attributes.alias})</span>` : ''}
+      </h3>
+      <div class="character-card__meta">
+        <span class="character-card__status ${attributes.alive ? 'alive' : 'deceased'}">
+          ${attributes.alive ? 'Vivo' : 'Fallecido'}
+        </span>
+        <span class="character-card__role">${attributes.role}</span>
+        <span class="character-card__gender">${attributes.gender}</span>
+      </div>
+      <p class="character-card__description">${attributes.description}</p>
+      <div class="character-card__details">
+        <p class="character-card__detail">
+          <strong>Primera aparición:</strong> 
+          <span>${attributes.first_appearance || 'Desconocida'}</span>
+        </p>
+        <p class="character-card__detail">
+          <strong>Creador(es):</strong> 
+          <span>${attributes.creator || 'Desconocido'}</span>
+        </p>
+        ${attributes.abilities?.length > 0 ? `
+          <div class="character-card__abilities">
+            <h4 class="character-card__abilities-title">Habilidades</h4>
+            <ul class="character-card__abilities-list">
+              ${attributes.abilities.map(ability => `
+                <li class="character-card__ability">${ability}</li>
+              `).join('')}
+            </ul>
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+  return card;
+};
+
+// Renderizado
+const renderLoader = () => {
+  app.innerHTML = '';
+  app.appendChild(createLoader());
+};
+
+const renderError = (message) => {
+  app.innerHTML = '';
+  app.appendChild(createError(message));
+};
+
+const renderApp = async () => {
+  try {
+    // Mostrar loader
+    renderLoader();
+
+    // Obtener datos
+    const { data } = await getData(`https://api.batmanapi.com/v1/${currentSection}`);
+    
+    // Construir interfaz
+    app.innerHTML = '';
+    app.appendChild(createHeader());
+    app.appendChild(createNavigation());
+    
+    const main = createMainContent();
+    
+    if (currentSection === 'characters') {
+      const grid = document.createElement('div');
+      grid.className = 'characters-grid';
+      data.forEach(character => {
+        grid.appendChild(createCharacterCard(character));
+      });
+      main.appendChild(grid);
+    }
+    
+    app.appendChild(main);
+    
+  } catch (error) {
+    console.error('Error al cargar los datos:', error);
+    renderError('No se pudieron cargar los datos. Por favor, inténtalo de nuevo más tarde.');
+  }
+};
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+  renderApp();
+});
 
 getDataCharacters();
