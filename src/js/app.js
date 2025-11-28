@@ -1,5 +1,6 @@
 
-import {getData} from "../js/services/peticion-API.js";
+import { getData } from "../js/services/peticion-API.js";
+import { localCharacters } from "../data/localCharacters.js";
 
 // Elementos principales
 const app = document.getElementById('app');
@@ -133,14 +134,38 @@ const renderError = (message) => {
   app.appendChild(createError(message));
 };
 
+// Función para combinar personajes de la API con los locales
+const getCombinedCharacters = async () => {
+  try {
+    // 1. Obtener datos de la API
+    const apiResponse = await getData(`https://api.batmanapi.com/v1/characters`);
+    const apiCharacters = apiResponse.data || [];
+
+    // 2. Extraer personajes locales
+    const localChars = localCharacters.map(item => item.data);
+
+    // 3. Combinar y desduplicar por ID
+    const combined = [...localChars, ...apiCharacters].reduce((acc, current) => {
+      const exists = acc.some(item => item.id === current.id);
+      if (!exists) {
+        acc.push(current);
+      }
+      return acc;
+    }, []);
+
+    return combined;
+  } catch (error) {
+    console.error('Error al combinar personajes:', error);
+    // En caso de error, devolver los personajes locales como respaldo
+    return localCharacters.map(item => item.data);
+  }
+};
+
 const renderApp = async () => {
   try {
     // Mostrar loader
     renderLoader();
 
-    // Obtener datos
-    const { data } = await getData(`https://api.batmanapi.com/v1/${currentSection}`);
-    
     // Construir interfaz
     app.innerHTML = '';
     app.appendChild(createHeader());
@@ -161,19 +186,23 @@ const renderApp = async () => {
         }
       });
     });
-    
+
     const main = createMainContent();
-    
+
     if (currentSection === 'characters') {
+      // Obtener datos combinados
+      const combinedCharacters = await getCombinedCharacters();
+
       const grid = document.createElement('div');
       grid.className = 'characters-grid';
-      data.forEach(character => {
+      combinedCharacters.forEach(character => {
         grid.appendChild(createCharacterCard(character));
       });
       main.appendChild(grid);
     }
-    
+
     app.appendChild(main);
+
     
   } catch (error) {
     console.error('Error al cargar los datos:', error);
