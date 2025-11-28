@@ -12,4 +12,145 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--color-dark);
   color: var(--color-text);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Estilos para el contenedor de contenido */
+.content-dom {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* Estilos para las tarjetas de personajes */
+.character-card {
+  background-color: var(--color-charcoal);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.character-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.character-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.character-card:hover .character-image img {
+  transform: scale(1.05);
+}
+
+.character-info {
+  padding: 20px;
+}
+
+.character-info h3 {
+  margin: 0 0 10px 0;
+  color: var(--color-amber);
+  font-size: 1.5rem;
+}
+
+.character-meta {
+  display: flex;
+  gap: 10px;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.status.alive {
+  background-color: #4CAF50;
+}
+
+.status.deceased {
+  background-color: #f44336;
+}
+
+.character-description {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.character-details {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.character-details p {
+  margin: 5px 0;
+}
+
+.character-abilities ul {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.character-abilities li {
+  background-color: rgba(255, 195, 0, 0.1);
+  color: var(--color-amber);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+/* Estilos para el loader */
+.loader-body {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: var(--color-amber);
+}
+
+/* Estilos para mensajes de error */
+.error-dom {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px 0;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.error-dom.hidden {
+  display: none;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .content-dom {
+    grid-template-columns: 1fr;
+  }
+  
+  .character-image {
+    height: 250px;
+  }
 }
