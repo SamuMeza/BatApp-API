@@ -1,0 +1,51 @@
+/* Desktop styles for screens between 768px and 1440px */
+@media (min-width: 768px) and (max-width: 1440px) {
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .app__main {
+    padding: 1.5rem;
+  }
+  
+  .character-card__image {
+    height: 280px;
+  }
+  
+  .character-card__content {
+    padding: 1.25rem;
+  }
+  
+  .character-card__title {
+    font-size: 1.35rem;
+  }
+  
+  .character-card__meta {
+    font-size: 0.85rem;
+  }
+  
+  .character-card__description {
+    font-size: 0.9rem;
+  }
+  
+  .app__nav-list {
+    gap: 0.75rem;
+  }
+  
+  .app__nav-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Additional desktop-specific styles for larger screens */
+@media (min-width: 1441px) {
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  
+  .character-card__image {
+    height: 320px;
+  }
+}
