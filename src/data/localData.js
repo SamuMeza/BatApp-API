@@ -283,7 +283,7 @@ export const localCharacters = [
 }
 ];
 
-let localLocations = [
+ export const localLocations = [
   {
   "data": {
     "id": 1,
@@ -576,7 +576,7 @@ let localLocations = [
 }
 ];
 
-let localConcepts = [
+ export const localConcepts = [
   {
   "data": {
     "id": 1,
@@ -809,7 +809,7 @@ let localConcepts = [
 }
 ];
 
-let localStoryLines = [
+export const localStoryLines = [
   {
   "data": {
     "id": 1,
