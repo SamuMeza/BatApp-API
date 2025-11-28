@@ -144,7 +144,23 @@ const renderApp = async () => {
     // Construir interfaz
     app.innerHTML = '';
     app.appendChild(createHeader());
-    app.appendChild(createNavigation());
+
+    // Crear y agregar navegación
+    const nav = createNavigation();
+    app.appendChild(nav);
+
+    // Agregar event listeners a los botones de navegación
+    const navLinks = nav.querySelectorAll('.app__nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const section = link.dataset.section;
+        if (section !== currentSection) {
+          currentSection = section;
+          renderApp(); // Volver a renderizar la app con la nueva sección
+        }
+      });
+    });
     
     const main = createMainContent();
     
