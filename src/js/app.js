@@ -10,28 +10,6 @@ let isLoading = true;
 
 /****************************************************************************/
 
-const getDataCharacters = async () => {
-  try {
-    const { data } = await getData("https://api.batmanapi.com/v1/characters");
-    
-    // Limpiar el contenedor
-    contentContainer.innerHTML = '';
-    
-    // Crear y añadir las tarjetas al contenedor
-    data.map(character => {
-      const card = createCharacterCard(character);
-      contentContainer.appendChild(card);
-    });
-    
-    // Ocultar el loader
-    loader.style.display = 'none';
-    
-  } catch (error) {
-    console.error('Error al cargar los personajes:', error);
-    errorMessage.classList.remove('hidden');
-    loader.style.display = 'none';
-  }
-};
 
 // Componentes
 const createLoader = () => {
@@ -187,9 +165,4 @@ const renderApp = async () => {
   }
 };
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-  renderApp();
-});
-
-getDataCharacters();
+renderApp();
