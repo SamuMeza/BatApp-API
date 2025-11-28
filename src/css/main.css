@@ -284,17 +284,6 @@ body {
   font-size: 0.8rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .characters-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .app__main {
-    padding: 1rem;
-  }
-  
-  .character-card__image {
-    height: 250px;
-  }
+.app__main {
+  padding: 1rem;
 }
