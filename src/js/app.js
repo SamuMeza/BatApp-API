@@ -1,6 +1,6 @@
 
 import { getData } from "../js/services/peticion-API.js";
-import { localCharacters } from "../data/localCharacters.js";
+import { localCharacters } from "../data/localData.js";
 
 // Elementos principales
 const app = document.getElementById('app');
