@@ -1,16 +1,24 @@
 
 import {getData} from "../js/services/peticion-API.js";
 
-const mainTitle = document.getElementById("main-title")
-const navCharacters = document.getElementById("nav-characters")
-const navLocations = document.getElementById("nav-locations")
-const navConcepts = document.getElementById("nav-concepts")
-const navStorylines = document.getElementById("nav-storylines")
-const carouselSection = document.getElementById("carousel-section")
-const carouselContainer = document.getElementById("carousel-container")
-const loader = document.getElementById("loader")
-const errorMessage = document.getElementById("error-message")
-const contentContainer = document.getElementById("content-container")
+// Elementos principales
+const app = document.getElementById('app');
+
+// Estados
+let currentSection = 'characters';
+let isLoading = true;
+
+// Elementos secundarios
+// const mainTitle = document.getElementById("main-title")
+// const navCharacters = document.getElementById("nav-characters")
+// const navLocations = document.getElementById("nav-locations")
+// const navConcepts = document.getElementById("nav-concepts")
+// const navStorylines = document.getElementById("nav-storylines")
+// const carouselSection = document.getElementById("carousel-section")
+// const carouselContainer = document.getElementById("carousel-container")
+// const loader = document.getElementById("loader")
+// const errorMessage = document.getElementById("error-message")
+// const contentContainer = document.getElementById("content-container")
 
 /****************************************************************************/
 
@@ -84,6 +92,27 @@ const getDataCharacters = async () => {
     errorMessage.classList.remove('hidden');
     loader.style.display = 'none';
   }
+};
+
+// Componentes
+const createLoader = () => {
+  const loader = document.createElement('div');
+  loader.className = 'app__loader';
+  loader.innerHTML = `
+    <div class="app__loader-spinner"></div>
+    <p class="app__loader-text">Cargando datos de la Batman API...</p>
+  `;
+  return loader;
+};
+
+const createError = (message) => {
+  const error = document.createElement('div');
+  error.className = 'app__error';
+  error.innerHTML = `
+    <p class="app__error-message">${message}</p>
+    <button class="app__error-retry">Reintentar</button>
+  `;
+  return error;
 };
 
 getDataCharacters();
