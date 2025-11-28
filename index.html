@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,53 +11,14 @@
   <meta name="googlebot" content="index, follow">
   <title>Batman API</title>
   <link rel="stylesheet" href="src/css/main.css">
-
-  <!-- Script de la aplicación -->
   <script type="module" src="src/js/app.js"></script>
 </head>
 <body>
-
-    <!-- Header -->
-  <header class="loader-header">
-        <h1 id="main-title" class="">
-            Cargando...
-        </h1>
-        <p class="">Datos obtenidos de la Batman API</p>
-    </header>
-
-    <!-- Navegación de secciones -->
-    <nav class="nav-dom">
-        <a href="#characters" id="nav-characters" class="">Personajes</a>
-        <a href="#locations" id="nav-locations" class="">Ubicaciones</a>
-        <a href="#concepts" id="nav-concepts" class="">Conceptos</a>
-        <a href="#storylines" id="nav-storylines" class="">Líneas Argumentales</a>
-    </nav>
-
-    <!-- Carrusel de destacados -->
-    <section id="carousel-section" class="carousel-dom">
-        <h2 class="">Destacados (Carrusel Flexbox)</h2>
-        <div id="carousel-container" class="">
-            <!-- Las imágenes del carrusel se inyectarán aquí -->
-        </div>
-        <hr class="">
-    </section>
-
-    <!-- Loader de carga de datos -->
-    <div id="loader" class="loader-body">
-        Cargando datos...
-        <div class=""></div>
+  <div id="app" class="app">
+    <div class="app__loader">
+      <div class="app__loader-spinner"></div>
+      <p class="app__loader-text">Cargando datos de la Batman API...</p>
     </div>
-
-    <!-- Mensaje de error -->
-    <div id="error-message" class="error-dom hidden">
-        No se pudieron cargar los datos. Por favor, inténtalo de nuevo más tarde.
-    </div>
-
-    <!-- Contenedor principal de la cuadrícula de tarjetas (Grid) -->
-    <main id="content-container" class="content-dom">
-        <!-- Las tarjetas se inyectarán aquí por JavaScript -->
-    </main>
-
-    
+  </div>
 </body>
 </html>
