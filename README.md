@@ -1,7 +1,5 @@
 # Batman API Explorer
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 Una aplicación web interactiva para explorar el universo de Batman a través de la Batman API. Esta aplicación permite a los usuarios navegar por personajes, ubicaciones, conceptos e historias del universo de Batman.
 
 ## Características Principales
@@ -131,22 +129,9 @@ La aplicación maneja los siguientes escenarios de error:
 - Datos faltantes o inválidos
 - Errores en la carga de imágenes
 
-## Mejoras Futuras
-
-- [ ] Implementar búsqueda y filtrado
-- [ ] Añadir más animaciones y transiciones
-- [ ] Mejorar la accesibilidad
-- [ ] Añadir pruebas unitarias
-- [ ] Implementar un sistema de favoritos
-- [ ] Añadir más detalles a las tarjetas
-
 ## Contribución
 
 Las contribuciones son bienvenidas. Por favor, crea un issue para discutir los cambios propuestos antes de hacer un pull request.
-
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
 ## Créditos
 
