@@ -135,8 +135,8 @@ Las contribuciones son bienvenidas. Por favor, crea un issue para discutir los c
 
 ## Créditos
 
-- [Batman API](https://batman-api.com) - Por proporcionar los datos
-- [Samuel Meza](https://github.com/tu-usuario) - Desarrollador
+- [Batman API](https://batmanapi.com/doc/batman-api/) - Por proporcionar los datos
+- [Samuel Meza](https://github.com/SamuMeza) - Desarrollador
 
 ---
 
